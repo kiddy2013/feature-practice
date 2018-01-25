@@ -12,6 +12,7 @@
 
     <modules>
         <module>feature-java-core</module>
+        <module>feature-third-jar</module>
     </modules>
 
     <properties>
