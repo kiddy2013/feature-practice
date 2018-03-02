@@ -13,6 +13,7 @@
     <modules>
         <module>feature-java-core</module>
         <module>feature-third-jar</module>
+        <module>feature-common-util</module>
     </modules>
 
     <properties>
