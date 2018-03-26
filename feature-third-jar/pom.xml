@@ -40,6 +40,10 @@
             <artifactId>jts-core</artifactId>
             <version>1.15.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
