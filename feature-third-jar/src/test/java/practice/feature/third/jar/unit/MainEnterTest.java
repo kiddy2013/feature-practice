@@ -1,12 +1,19 @@
 package practice.feature.third.jar.unit;
 
-import org.testng.annotations.Test;
+import junit.framework.TestCase;
+import junit.textui.TestRunner;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
-public class MainEnterTest {
+public class MainEnterTest extends TestCase {
+    @Test
+    public void main() throws Exception {
+        System.out.println("asda");
+    }
 
     @Test
     public void testMain() throws Exception {
-
+        System.out.println("asda");
     }
 
 }
