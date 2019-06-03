@@ -1,9 +1,7 @@
-package practice.feature.third.jar.unit;
+package practice.feature.third.jar.asm;
 
 import junit.framework.TestCase;
-import junit.textui.TestRunner;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 public class MainEnterTest extends TestCase {
     @Test

@@ -1,4 +1,4 @@
-package practice.feature.third.jar.unit;
+package practice.feature.third.jar.asm;
 
 /**
  * 程序主要入口
@@ -10,6 +10,5 @@ public class MainEnter {
     public static void main(String[] args) {
         System.out.println("asdasd");
     }
-
 
 }
