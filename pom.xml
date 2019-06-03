@@ -13,10 +13,8 @@
     <modules>
         <module>feature-java-core</module>
         <module>feature-third-jar</module>
-        <module>feature-hadoop</module>
         <module>road-common</module>
         <module>common-domain</module>
-        <module>feature-dao</module>
     </modules>
 
     <properties>
