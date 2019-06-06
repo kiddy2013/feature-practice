@@ -5,6 +5,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import org.apache.http.Header;
+import org.apache.http.HeaderIterator;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.HttpVersion;
@@ -24,25 +25,25 @@ public class MainEnter {
         //1 new Client
         CloseableHttpClient closeableHttpClient = HttpClients.createDefault();
 
-        URI uri = new URIBuilder()
-            .setScheme("http")
-            .setHost("www.google.com")
-            .setPath("/search")
-            .setParameter("q", "httpclient")
-            .setParameter("btnG", "Google Search")
-            .setParameter("aq", "f")
-            .setParameter("oq", "")
-            .build();
-        HttpGet httpget = new HttpGet(uri);
-        System.out.println(httpget.getURI());
-
-        //2 new Request
-        CloseableHttpResponse httpResponse=closeableHttpClient.execute(httpget);
-        try {
-            System.out.println("hello HttpClient!");
-        }finally {
-            httpResponse.close();
-        }
+        //URI uri = new URIBuilder()
+        //    .setScheme("http")
+        //    .setHost("www.google.com")
+        //    .setPath("/search")
+        //    .setParameter("q", "httpclient")
+        //    .setParameter("btnG", "Google Search")
+        //    .setParameter("aq", "f")
+        //    .setParameter("oq", "")
+        //    .build();
+        //HttpGet httpget = new HttpGet(uri);
+        //System.out.println(httpget.getURI());
+        //
+        ////2 new Request
+        //CloseableHttpResponse httpResponse=closeableHttpClient.execute(httpget);
+        //try {
+        //    System.out.println("hello HttpClient!");
+        //}finally {
+        //    httpResponse.close();
+        //}
 
         //3 new Response
         HttpResponse response = new BasicHttpResponse(HttpVersion.HTTP_1_1,
@@ -66,7 +67,10 @@ public class MainEnter {
         Header[] hs=response.getHeaders("Set-Cookie");
         System.out.println(hs.length);
 
-        response.headerIterator();
-
+        //5 iterator
+        HeaderIterator it=response.headerIterator("Set-Cookie");
+        while(it.hasNext()){
+            System.out.println(it.next());
+        }
     }
 }
