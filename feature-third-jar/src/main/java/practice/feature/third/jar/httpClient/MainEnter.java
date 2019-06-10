@@ -5,15 +5,19 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import org.apache.http.Header;
+import org.apache.http.HeaderElement;
+import org.apache.http.HeaderElementIterator;
 import org.apache.http.HeaderIterator;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.HttpVersion;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicHeaderElementIterator;
 import org.apache.http.message.BasicHttpResponse;
 
 /**
@@ -55,22 +59,32 @@ public class MainEnter {
         System.out.println(response.getStatusLine().toString());
 
         //4 edit header
-        response.addHeader("Set-Cookie","c1=a; path=/; domain=localhost");
-        response.addHeader("Set-Cookie","c2=b; path=\"/\", c3=c; domain=\"localhost\"");
+        response.addHeader("Set-Cookie", "c1=a; path=/; domain=localhost");
+        response.addHeader("Set-Cookie", "c2=b; path=\"/\", c3=c; domain=\"localhost\"");
 
-        Header h1=response.getFirstHeader("Set-Cookie");
+        Header h1 = response.getFirstHeader("Set-Cookie");
         System.out.println(h1);
 
-        Header h2=response.getLastHeader("Set-Cookie");
+        Header h2 = response.getLastHeader("Set-Cookie");
         System.out.println(h2);
 
-        Header[] hs=response.getHeaders("Set-Cookie");
+        Header[] hs = response.getHeaders("Set-Cookie");
         System.out.println(hs.length);
 
         //5 iterator
-        HeaderIterator it=response.headerIterator("Set-Cookie");
-        while(it.hasNext()){
+        HeaderIterator it = response.headerIterator("Set-Cookie");
+        while (it.hasNext()) {
             System.out.println(it.next());
+        }
+        System.out.println("----------------------------");
+        HeaderElementIterator hit = new BasicHeaderElementIterator(response.headerIterator("Set-Cookie"));
+        while (hit.hasNext()) {
+            HeaderElement headerElement = hit.nextElement();
+            System.out.println(headerElement.getName() + "=" + headerElement.getValue());
+            NameValuePair[] params = headerElement.getParameters();
+            for (NameValuePair pair : params) {
+                System.out.println(" " + pair);
+            }
         }
     }
 }
