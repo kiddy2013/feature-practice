@@ -15,10 +15,13 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeaderElementIterator;
 import org.apache.http.message.BasicHttpResponse;
+import org.apache.http.util.EntityUtils;
 
 /**
  * @author jack
@@ -29,25 +32,25 @@ public class MainEnter {
         //1 new Client
         CloseableHttpClient closeableHttpClient = HttpClients.createDefault();
 
-        //URI uri = new URIBuilder()
-        //    .setScheme("http")
-        //    .setHost("www.google.com")
-        //    .setPath("/search")
-        //    .setParameter("q", "httpclient")
-        //    .setParameter("btnG", "Google Search")
-        //    .setParameter("aq", "f")
-        //    .setParameter("oq", "")
-        //    .build();
-        //HttpGet httpget = new HttpGet(uri);
-        //System.out.println(httpget.getURI());
-        //
-        ////2 new Request
-        //CloseableHttpResponse httpResponse=closeableHttpClient.execute(httpget);
-        //try {
-        //    System.out.println("hello HttpClient!");
-        //}finally {
-        //    httpResponse.close();
-        //}
+        URI uri = new URIBuilder()
+            .setScheme("http")
+            .setHost("www.google.com")
+            .setPath("/search")
+            .setParameter("q", "httpclient")
+            .setParameter("btnG", "Google Search")
+            .setParameter("aq", "f")
+            .setParameter("oq", "")
+            .build();
+        HttpGet httpget = new HttpGet(uri);
+        System.out.println(httpget.getURI());
+
+        //2 new Request
+        CloseableHttpResponse httpResponse = closeableHttpClient.execute(httpget);
+        try {
+            System.out.println("hello HttpClient!");
+        } finally {
+            httpResponse.close();
+        }
 
         //3 new Response
         HttpResponse response = new BasicHttpResponse(HttpVersion.HTTP_1_1,
@@ -86,5 +89,12 @@ public class MainEnter {
                 System.out.println(" " + pair);
             }
         }
+        System.out.println("----------------------------");
+        //6 entity
+        StringEntity myEntity = new StringEntity("important message", ContentType.create("text/plain", "UTF-8"));
+        System.out.println(myEntity.getContentType());
+        System.out.println(myEntity.getContentLength());
+        System.out.println(EntityUtils.toString(myEntity));
+        System.out.println(EntityUtils.toByteArray(myEntity).length);
     }
 }
