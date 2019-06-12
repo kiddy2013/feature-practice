@@ -15,6 +15,7 @@
         <module>feature-third-jar</module>
         <module>road-common</module>
         <module>common-domain</module>
+        <module>gof-design</module>
     </modules>
 
     <properties>
