@@ -96,5 +96,8 @@ public class MainEnter {
         System.out.println(myEntity.getContentLength());
         System.out.println(EntityUtils.toString(myEntity));
         System.out.println(EntityUtils.toByteArray(myEntity).length);
+
+        // HttpClients 工具类
+        CloseableHttpClient closeableHttpClient1 = HttpClients.custom().build();
     }
 }
