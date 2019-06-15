@@ -89,6 +89,7 @@ public class MainEnter {
                 System.out.println(" " + pair);
             }
         }
+
         System.out.println("----------------------------");
         //6 entity
         StringEntity myEntity = new StringEntity("important message", ContentType.create("text/plain", "UTF-8"));
