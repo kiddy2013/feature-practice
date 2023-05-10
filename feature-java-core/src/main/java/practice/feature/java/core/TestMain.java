@@ -21,6 +21,7 @@ public class TestMain {
             }
             sb.append(lastPkid);
             System.out.println(sb.toString());
+            System.out.println(sb.toString());
             cursor++;
         }
     }
