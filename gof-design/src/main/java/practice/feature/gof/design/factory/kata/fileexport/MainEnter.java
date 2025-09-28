@@ -3,20 +3,30 @@ package practice.feature.gof.design.factory.kata.fileexport;
 public class MainEnter {
 
     /**
-     * 🔧 Kata 1：最简单的例子 —— 不同类型的文档导出
-     * 场景：
-     * 你要支持导出 PDF、Excel、Word 文件。
+     * 💡 场景：
+     * 你需要支持生成 PDF 和 Excel 报告。
+     *
+     * 🎯 要求：
+     * 使用工厂方法模式实现以下结构：
+     *
+     * Report 接口：void generate()
+     * PdfReport, ExcelReport 实现类
+     * ReportCreator 抽象类：声明 createReport() 工厂方法
+     * PdfReportCreator, ExcelReportCreator 具体工厂
+     * ✅ 功能：
+     * 调用 creator.createAndGenerate() 应该输出对应类型的报告。
      *
      * @param args
      */
     public static void main(String[] args) {
 
-        FileProductFactory pdfFactory = new PdfFileConductFactory();
-        FileProduct pdfProduct = pdfFactory.create();
-        pdfProduct.create("test.pdf");
+        ReportCreator pdfFactory = new PdfReportCreator();
+        pdfFactory.createAndGenerate();
 
-        FileProductFactory wordFactory = new WordFileConductFactory();
-        FileProduct wordProduct = wordFactory.create();
-        wordProduct.create("test.word");
+        ReportCreator wordFactory = new ExcelReportCreator();
+        wordFactory.createAndGenerate();
+
+        ReportCreator restrictedPdfFactory = new RestrictedPdfReportCreator();
+        restrictedPdfFactory.createAndGenerate();
     }
 }
